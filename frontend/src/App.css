@@ -1,10 +1,13 @@
-body, html, #root, .map-container {
+body,
+html,
+#root,
+.map-container {
   height: 100%;
   margin: 0;
 }
 
 .container {
-  font-family: 'Exo 2', sans-serif;
+  font-family: "Exo 2", sans-serif;
 }
 
 .header {
@@ -22,4 +25,35 @@ body, html, #root, .map-container {
   height: calc(100vh - 36px);
 }
 
+.timeoverlay {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000; /* Ensure it's above the map */
+  font-family: "Exo 2", sans-serif;
+}
 
+.timeoverlayhead {
+  text-align: center;
+}
+
+.timeoverlay input {
+  font-family: "Exo 2", sans-serif;
+}
+
+.timeoverlay button {
+  font-family: "Exo 2", sans-serif;
+}
+
+.timeoverlay select {
+  font-family: 'Exo 2', sans-serif;
+  padding: 2px;
+  margin-right: 10px; /* space between the select and the date input */
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  /* Add other styles as needed */
+}
