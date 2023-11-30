@@ -6,16 +6,13 @@ import WeatherMap from "./components/WeatherMap";
 import Header from "./components/Header";
 import stations from "./data/nexrad_station_id.json";
 import { useState } from "react";
-import UpdateMapCenter from './components/UpdateMapCenter';
 
 function App() {
   function handleDateTimeSubmit(date, time, stationId) {
     console.log("Selected Date:", date);
     console.log("Selected Time:", time);
     console.log("Selected station:", stationId);
-    const stationDetails = stations.find(station => station.ID === stationId)
-    setSelectedStation(stationDetails);
-    UpdateMapCenter(stationDetails);
+    setSelectedStation(stationId);
   }
 
   const [selectedStation, setSelectedStation] = useState(null);

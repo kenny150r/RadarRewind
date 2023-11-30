@@ -10,6 +10,10 @@ function DateTimeOverlay({ onSubmit}) {
     onSubmit(date, time, station);
   };
 
+  const currentDate = new Date();
+  const formattedDate = currentDate.toISOString().split('T')[0]; // Format to yyyy-mm-dd
+  const formattedTime = currentDate.toTimeString().split(' ')[0].substring(0, 5); // Format to HH:MM
+
   return (
     <div className="timeoverlay">
       <div className="timeoverlayhead">
@@ -25,8 +29,8 @@ function DateTimeOverlay({ onSubmit}) {
             ))}
           </select>
         </label>
-        <input type="date" name="date" required />
-        <input type="time" name="time" required />
+        <input type="date" name="date" required defaultValue={formattedDate}/>
+        <input type="time" name="time" required defaultValue={formattedTime}/>
         <button type="submit">Go</button>
       </form>
     </div>

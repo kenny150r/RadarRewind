@@ -4,12 +4,6 @@ import UpdateMapCenter from './UpdateMapCenter';
 
 function WeatherMap({ selectedStation, setSelectedStation, stations }) {
 
-  const findStationDetails = (stationId) => {
-    return stations.find(station => station.ID === stationId);
-  };
-
-  const stationDetails = findStationDetails(selectedStation);
-
   return (
     <div className="weather-map">
       <MapContainer
@@ -19,7 +13,7 @@ function WeatherMap({ selectedStation, setSelectedStation, stations }) {
         maxZoom={15}
         style={{ height: "100%", width: "100%" }}
       >
-        <UpdateMapCenter stationDetails={stationDetails}/>
+        <UpdateMapCenter selectedStation={selectedStation} stations={stations}/>
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.carto.com/">CARTO</a> | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
