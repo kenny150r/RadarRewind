@@ -1,32 +1,37 @@
 import React from "react";
 import "./App.css";
-import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import DateTimeOverlay from './components/DateTimeOverlay';
+import DateTimeOverlay from "./components/DateTimeOverlay";
+import WeatherMap from "./components/WeatherMap";
+import Header from "./components/Header";
+import stations from "./data/nexrad_station_id.json";
+import { useState } from "react";
+import UpdateMapCenter from './components/UpdateMapCenter';
 
 function App() {
-
-  const handleDateTimeSubmit = (date, time) => {
+  function handleDateTimeSubmit(date, time, stationId) {
     console.log("Selected Date:", date);
     console.log("Selected Time:", time);
-    // Pass the data to another function or perform your desired action
-  };
+    console.log("Selected station:", stationId);
+    const stationDetails = stations.find(station => station.ID === stationId)
+    setSelectedStation(stationDetails);
+    UpdateMapCenter(stationDetails);
+  }
+
+  const [selectedStation, setSelectedStation] = useState(null);
 
   return (
     <div className="container">
-      <div className="header">RadarRewind</div>
+      <Header></Header>
       <div className="leaflet-container">
-        <DateTimeOverlay onSubmit={handleDateTimeSubmit} />
-        <MapContainer
-          center={[37.60900565748196, -122.32823527245013]}
-          zoom={11}
-          style={{ height: "100%", width: "100%" }}
-        >
-          <TileLayer
-            url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://www.carto.com/">CARTO</a> | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          />
-        </MapContainer>
+        <DateTimeOverlay
+          onSubmit={handleDateTimeSubmit}
+        />
+        <WeatherMap
+          selectedStation={selectedStation}
+          setSelectedStation={setSelectedStation}
+          stations={stations}
+        />
       </div>
     </div>
   );

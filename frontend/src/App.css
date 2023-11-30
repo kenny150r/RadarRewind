@@ -17,12 +17,47 @@ html,
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   font-weight: 600; /* semi-bold */
   font-size: 20px; /* Adjust as needed */
 }
 
+.about {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);  
+  font-size: 0.6em; /* Smaller font size */
+  font-weight: 500;
+  font-family: sans-serif; /* Default sans-serif font */  
+}
+
+.overlay {
+  position: fixed;
+  top: 20%;
+  left: 30%;
+  right: 75%;
+  bottom: 50%;
+  width: 40%;
+  color: black;
+  background: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 5px;
+  z-index: 999;
+  /* more styling as needed */
+}
+
 .leaflet-container {
   height: calc(100vh - 36px);
+}
+
+.weather-map {
+  width: 100vw;
+  height: 100vh;
 }
 
 .timeoverlay {
@@ -57,3 +92,9 @@ html,
   border: 1px solid #ccc;
   /* Add other styles as needed */
 }
+
+.stationPopup {
+  font-family: "Exo 2", sans-serif;
+  text-align: center;
+}
+
